@@ -4,7 +4,16 @@
   --color-background: #0C111D;
   --color-foreground: #ffffff;
   --color-primary: #7F56D9;
+  --color-gray-200: #EAECF0;
   --font-sans: "Inter", sans-serif;
+
+  --text-sm-semibold: 14px;
+  --text-sm-semibold--line-height: 20px;
+  --text-sm-semibold--font-weight: 600;
+
+  --text-md-semibold: 16px;
+  --text-md-semibold--line-height: 24px;
+  --text-md-semibold--font-weight: 600;
 }
 
 body {
