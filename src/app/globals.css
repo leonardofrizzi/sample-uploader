@@ -4,7 +4,13 @@
   --color-background: #0C111D;
   --color-foreground: #ffffff;
   --color-primary: #7F56D9;
+  --color-primary-100: #F4EBFF;
+  --color-primary-700: #6941C6;
   --color-gray-200: #EAECF0;
+  --color-gray-300: #D0D5DD;
+  --color-gray-600: #475467;
+  --color-gray-700: #344054;
+  --color-gray-900: #101828;
   --font-sans: "Inter", sans-serif;
 
   --text-sm-semibold: 14px;
@@ -14,6 +20,20 @@
   --text-md-semibold: 16px;
   --text-md-semibold--line-height: 24px;
   --text-md-semibold--font-weight: 600;
+
+  --text-lg-semibold: 18px;
+  --text-lg-semibold--line-height: 28px;
+  --text-lg-semibold--font-weight: 600;
+
+  --text-sm-regular: 14px;
+  --text-sm-regular--line-height: 20px;
+  --text-sm-regular--font-weight: 400;
+
+  --text-sm-medium: 14px;
+  --text-sm-medium--line-height: 20px;
+  --text-sm-medium--font-weight: 500;
+
+  --shadow-xl: 0px 20px 24px -4px rgba(16, 24, 40, 0.08), 0px 8px 8px -4px rgba(16, 24, 40, 0.03);
 }
 
 body {
