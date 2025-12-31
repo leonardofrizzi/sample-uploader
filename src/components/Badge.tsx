@@ -1,0 +1,20 @@
+interface BadgeProps {
+  children: React.ReactNode;
+  variant?: "default" | "progress" | "completed";
+}
+
+export function Badge({ children, variant = "default" }: BadgeProps) {
+  const variants = {
+    default: "bg-primary-100 border-primary-100 text-primary-700",
+    progress: "bg-green-50 border-green-100 text-green-700",
+    completed: "bg-green-700 border-green-700 text-green-25",
+  };
+
+  return (
+    <span
+      className={`inline-flex items-center px-[10px] py-[6px] border rounded-lg shadow-[0px_1px_2px_rgba(16,24,40,0.05)] text-sm-semibold ${variants[variant]}`}
+    >
+      {children}
+    </span>
+  );
+}

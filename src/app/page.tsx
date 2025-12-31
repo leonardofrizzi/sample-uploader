@@ -1,5 +1,6 @@
 import { Header } from "@/components/Header";
 import { Card } from "@/components/Card";
+import { Badge } from "@/components/Badge";
 
 export default function Home() {
   return (
@@ -8,9 +9,7 @@ export default function Home() {
       <main className="flex-1 flex items-start justify-center pt-12 px-4">
         <Card>
           <div className="px-6 pt-6">
-            <span className="inline-block px-[10px] py-[6px] bg-primary-100 border border-primary-100 rounded-lg text-sm-semibold text-primary-700">
-              Starting Extraction
-            </span>
+            <Badge>Starting Extraction</Badge>
             <h1 className="mt-4 text-lg-semibold text-gray-900">
               Hearsay Extraction Assistant
             </h1>
