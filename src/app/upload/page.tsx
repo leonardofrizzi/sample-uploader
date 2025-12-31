@@ -42,7 +42,7 @@ export default function UploadPage() {
               Select files to upload for review
             </p>
           </div>
-          <div className="flex flex-col items-center gap-3 px-6 mt-6 -mb-4">
+          <div className="flex flex-col items-center gap-3 px-6 mt-6 pb-6">
             <input
               ref={fileInputRef}
               type="file"

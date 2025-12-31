@@ -33,7 +33,7 @@ export default function Home() {
               description="OS version 11.1+"
             />
           </div>
-          <div className="flex flex-col items-center gap-5 px-16 pt-8 pb-2">
+          <div className="flex flex-col items-center gap-5 px-16 pt-8 pb-6">
             <Link href="/source" className="w-full max-w-[544px]">
               <ActionButton icon="arrow-right">
                 Extract from a Non-Phone Source

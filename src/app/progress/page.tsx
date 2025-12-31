@@ -80,7 +80,7 @@ export default function ProgressPage() {
               <span className="text-xs-medium text-black">Uploading</span>
             </div>
           </div>
-          <div className="flex justify-center px-6 pt-6">
+          <div className="flex justify-center px-6 pt-6 pb-6">
             <span className="text-sm-bold text-primary-700">
               Do Not Close App While Processing
             </span>

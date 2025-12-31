@@ -35,7 +35,7 @@ export default function SourcePage() {
               title="Snapchat"
             />
           </div>
-          <div className="flex flex-col items-center gap-5 px-8 pt-6 pb-2">
+          <div className="flex flex-col items-center gap-5 px-8 pt-6 pb-6">
             <Link href="/upload" className="w-full flex justify-center">
               <ActionButton variant="upload" icon="upload-cloud" iconPosition="top">
                 Or, Upload Files

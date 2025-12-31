@@ -4,7 +4,7 @@ interface CardProps {
 
 export function Card({ children }: CardProps) {
   return (
-    <div className="relative w-full max-w-[672px] mx-auto bg-white shadow-xl rounded-xl pt-[10px] pb-10 overflow-hidden">
+    <div className="relative w-full max-w-[672px] mx-auto bg-white shadow-xl rounded-xl overflow-hidden">
       <div className="absolute -top-[168px] left-0 w-[336px] h-[336px] pointer-events-none">
         <div
           className="absolute inset-0"
