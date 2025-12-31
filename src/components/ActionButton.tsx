@@ -23,7 +23,7 @@ export function ActionButton({
   return (
     <button
       onClick={onClick}
-      className={`flex items-center justify-center w-full max-w-[544px] h-12 gap-2 bg-white border border-gray-300 shadow-[0px_1px_2px_rgba(16,24,40,0.05)] text-gray-700 hover:opacity-90 transition-opacity ${variants[variant]}`}
+      className={`flex items-center justify-center w-full max-w-[544px] h-12 gap-2 bg-white border border-gray-300 shadow-[0px_1px_2px_rgba(16,24,40,0.05)] text-gray-700 hover:bg-gray-50 transition-colors ${variants[variant]}`}
     >
       {icon && iconPosition === "left" && (
         <Image src={`/svg/${icon}.svg`} alt="" width={20} height={20} />
