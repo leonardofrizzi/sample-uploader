@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Card } from "@/components/Card";
@@ -33,9 +34,11 @@ export default function Home() {
             />
           </div>
           <div className="flex flex-col items-center gap-5 px-16 pt-8 pb-2">
-            <ActionButton icon="arrow-right">
-              Extract from a Non-Phone Source
-            </ActionButton>
+            <Link href="/source" className="w-full max-w-[544px]">
+              <ActionButton icon="arrow-right">
+                Extract from a Non-Phone Source
+              </ActionButton>
+            </Link>
             <ActionButton variant="secondary" icon="upload-cloud" iconPosition="left">
               Or, Upload Files
             </ActionButton>
