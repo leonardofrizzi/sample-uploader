@@ -1,4 +1,5 @@
 import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import { Card } from "@/components/Card";
 import { Badge } from "@/components/Badge";
 import { DeviceCard } from "@/components/DeviceCard";
@@ -8,7 +9,7 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-1 flex items-start justify-center pt-12 px-4">
+      <main className="flex-1 flex items-center justify-center px-4">
         <Card>
           <div className="px-6 pt-6">
             <Badge>Starting Extraction</Badge>
@@ -41,6 +42,7 @@ export default function Home() {
           </div>
         </Card>
       </main>
+      <Footer />
     </div>
   );
 }
