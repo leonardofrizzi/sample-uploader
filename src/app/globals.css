@@ -20,6 +20,7 @@
   --color-blue-50: #EFF8FF;
   --color-blue-600: #1570EF;
   --color-success-500: #17B26A;
+  --color-cyan-100: #CFFAFE;
   --font-sans: "Inter", sans-serif;
 
   --text-sm-semibold: 14px;
@@ -45,6 +46,14 @@
   --text-md-medium: 16px;
   --text-md-medium--line-height: 24px;
   --text-md-medium--font-weight: 500;
+
+  --text-xs-medium: 12px;
+  --text-xs-medium--line-height: 18px;
+  --text-xs-medium--font-weight: 500;
+
+  --text-sm-bold: 14px;
+  --text-sm-bold--line-height: 20px;
+  --text-sm-bold--font-weight: 700;
 
   --shadow-xl: 0px 20px 24px -4px rgba(16, 24, 40, 0.08), 0px 8px 8px -4px rgba(16, 24, 40, 0.03);
 }
