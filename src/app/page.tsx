@@ -1,6 +1,7 @@
 import { Header } from "@/components/Header";
 import { Card } from "@/components/Card";
 import { Badge } from "@/components/Badge";
+import { DeviceCard } from "@/components/DeviceCard";
 
 export default function Home() {
   return (
@@ -16,6 +17,18 @@ export default function Home() {
             <p className="text-sm-regular text-gray-600">
               Follow the instructions below to prepare for an extraction.
             </p>
+          </div>
+          <div className="flex flex-wrap justify-center gap-8 px-16 mt-6">
+            <DeviceCard
+              image="/images/iphone.webp"
+              title="iPhone"
+              description="iOS versions 11.1+"
+            />
+            <DeviceCard
+              image="/images/android.webp"
+              title="Android"
+              description="OS version 11.1+"
+            />
           </div>
         </Card>
       </main>
