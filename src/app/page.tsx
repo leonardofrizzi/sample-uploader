@@ -39,9 +39,11 @@ export default function Home() {
                 Extract from a Non-Phone Source
               </ActionButton>
             </Link>
-            <ActionButton variant="secondary" icon="upload-cloud" iconPosition="left">
-              Or, Upload Files
-            </ActionButton>
+            <Link href="/upload" className="w-full max-w-[544px]">
+              <ActionButton variant="secondary" icon="upload-cloud" iconPosition="left">
+                Or, Upload Files
+              </ActionButton>
+            </Link>
           </div>
         </Card>
       </main>

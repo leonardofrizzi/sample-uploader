@@ -1,16 +1,17 @@
 import Image from "next/image";
+import Link from "next/link";
 
 interface DeviceCardProps {
   image: string;
   title: string;
   description: string;
-  onClick?: () => void;
+  href?: string;
 }
 
-export function DeviceCard({ image, title, description, onClick }: DeviceCardProps) {
+export function DeviceCard({ image, title, description, href = "/upload" }: DeviceCardProps) {
   return (
-    <button
-      onClick={onClick}
+    <Link
+      href={href}
       className="flex flex-col items-center justify-center w-[256px] h-[230px] px-[18px] py-8 bg-white border border-slate-200 rounded-xl gap-7 hover:border-primary transition-colors"
     >
       <Image
@@ -23,6 +24,6 @@ export function DeviceCard({ image, title, description, onClick }: DeviceCardPro
         <span className="text-sm-medium text-gray-700 text-center">{title}</span>
         <span className="text-sm-regular text-gray-600 text-center">{description}</span>
       </div>
-    </button>
+    </Link>
   );
 }

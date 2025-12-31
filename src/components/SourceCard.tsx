@@ -1,17 +1,17 @@
 import Image from "next/image";
+import Link from "next/link";
 
 interface SourceCardProps {
   image: string;
   title: string;
-  selected?: boolean;
-  onClick?: () => void;
+  href?: string;
 }
 
-export function SourceCard({ image, title, selected, onClick }: SourceCardProps) {
+export function SourceCard({ image, title, href = "/upload" }: SourceCardProps) {
   return (
-    <button
-      onClick={onClick}
-      className={`flex flex-col items-center justify-center w-[165px] h-[152px] p-[10px] bg-white border rounded-xl gap-[14px] transition-colors ${selected ? "border-primary border-2" : "border-slate-200 hover:border-primary"}`}
+    <Link
+      href={href}
+      className="flex flex-col items-center justify-center w-[165px] h-[152px] p-[10px] bg-white border border-slate-200 rounded-xl gap-[14px] transition-colors hover:border-primary"
     >
       <Image
         src={image}
@@ -20,6 +20,6 @@ export function SourceCard({ image, title, selected, onClick }: SourceCardProps)
         height={98}
       />
       <span className="text-sm-medium text-gray-700 text-center">{title}</span>
-    </button>
+    </Link>
   );
 }

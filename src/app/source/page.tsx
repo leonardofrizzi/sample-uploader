@@ -1,6 +1,3 @@
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -10,8 +7,6 @@ import { SourceCard } from "@/components/SourceCard";
 import { ActionButton } from "@/components/ActionButton";
 
 export default function SourcePage() {
-  const [selected, setSelected] = useState<string | null>(null);
-
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -30,26 +25,22 @@ export default function SourcePage() {
             <SourceCard
               image="/images/facebook.webp"
               title="Facebook"
-              selected={selected === "facebook"}
-              onClick={() => setSelected("facebook")}
             />
             <SourceCard
               image="/images/instagram.webp"
               title="Instagram"
-              selected={selected === "instagram"}
-              onClick={() => setSelected("instagram")}
             />
             <SourceCard
               image="/images/snapchat.webp"
               title="Snapchat"
-              selected={selected === "snapchat"}
-              onClick={() => setSelected("snapchat")}
             />
           </div>
           <div className="flex flex-col items-center gap-5 px-8 pt-6 pb-2">
-            <ActionButton variant="upload" icon="upload-cloud" iconPosition="top">
-              Or, Upload Files
-            </ActionButton>
+            <Link href="/upload" className="w-full flex justify-center">
+              <ActionButton variant="upload" icon="upload-cloud" iconPosition="top">
+                Or, Upload Files
+              </ActionButton>
+            </Link>
             <Link href="/" className="text-md-semibold text-gray-700 hover:opacity-90 transition-opacity">
               Back
             </Link>
