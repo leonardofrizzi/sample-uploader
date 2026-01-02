@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -8,7 +9,7 @@ interface DeviceCardProps {
   href?: string;
 }
 
-export function DeviceCard({ image, title, description, href = "/upload" }: DeviceCardProps) {
+export const DeviceCard = memo(function DeviceCard({ image, title, description, href = "/upload" }: DeviceCardProps) {
   return (
     <Link
       href={href}
@@ -26,4 +27,4 @@ export function DeviceCard({ image, title, description, href = "/upload" }: Devi
       </div>
     </Link>
   );
-}
+});

@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -7,7 +8,7 @@ interface SourceCardProps {
   href?: string;
 }
 
-export function SourceCard({ image, title, href = "/upload" }: SourceCardProps) {
+export const SourceCard = memo(function SourceCard({ image, title, href = "/upload" }: SourceCardProps) {
   return (
     <Link
       href={href}
@@ -22,4 +23,4 @@ export function SourceCard({ image, title, href = "/upload" }: SourceCardProps) 
       <span className="text-sm-medium text-gray-700 text-center">{title}</span>
     </Link>
   );
-}
+});

@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Image from "next/image";
 
 interface ActionButtonProps {
@@ -8,7 +9,7 @@ interface ActionButtonProps {
   onClick?: () => void;
 }
 
-export function ActionButton({
+export const ActionButton = memo(function ActionButton({
   children,
   variant = "primary",
   icon,
@@ -43,4 +44,4 @@ export function ActionButton({
       )}
     </button>
   );
-}
+});

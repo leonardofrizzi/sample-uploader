@@ -1,8 +1,10 @@
+import { memo } from "react";
+
 interface CardProps {
   children: React.ReactNode;
 }
 
-export function Card({ children }: CardProps) {
+export const Card = memo(function Card({ children }: CardProps) {
   return (
     <div className="relative w-full max-w-[672px] mx-auto bg-white shadow-xl rounded-xl overflow-hidden">
       <div className="absolute -top-[168px] left-0 w-[336px] h-[336px] pointer-events-none">
@@ -29,4 +31,4 @@ export function Card({ children }: CardProps) {
       </div>
     </div>
   );
-}
+});
