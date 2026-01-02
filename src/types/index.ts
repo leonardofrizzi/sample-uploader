@@ -7,6 +7,14 @@ export interface FileData {
   status: "pending" | "uploading" | "completed" | "error";
 }
 
+export interface StoredFile {
+  id: string;
+  name: string;
+  size: number;
+  type: string;
+  uploadedAt: string;
+}
+
 export interface User {
   id: string;
   email: string;

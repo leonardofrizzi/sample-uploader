@@ -1,12 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-
-interface StoredFile {
-  id: string;
-  name: string;
-  size: number;
-  type: string;
-  uploadedAt: string;
-}
+import { StoredFile } from "@/types";
 
 const uploadedFiles: StoredFile[] = [];
 

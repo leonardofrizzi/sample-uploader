@@ -1,17 +1,12 @@
 "use client";
 
-import { ReactNode } from "react";
+import { memo, ReactNode } from "react";
 import { AuthProvider } from "@/contexts/AuthContext";
-import { UploadProvider } from "@/contexts/UploadContext";
 
 interface ProvidersProps {
   children: ReactNode;
 }
 
-export function Providers({ children }: ProvidersProps) {
-  return (
-    <AuthProvider>
-      <UploadProvider>{children}</UploadProvider>
-    </AuthProvider>
-  );
-}
+export const Providers = memo(function Providers({ children }: ProvidersProps) {
+  return <AuthProvider>{children}</AuthProvider>;
+});

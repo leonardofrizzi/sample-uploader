@@ -1,10 +1,11 @@
 "use client";
 
+import { memo } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 
-export function Header() {
+export const Header = memo(function Header() {
   const router = useRouter();
   const { logout } = useAuth();
 
@@ -33,4 +34,4 @@ export function Header() {
       </button>
     </header>
   );
-}
+});
