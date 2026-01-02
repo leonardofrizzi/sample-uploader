@@ -73,8 +73,11 @@ export class CompositeFileValidator implements FileValidator {
   }
 }
 
+const ALLOWED_FILE_TYPES = ["pdf", "doc", "docx", "txt", "jpg", "jpeg", "png", "gif", "zip"];
+
 export function createDefaultValidator(): CompositeFileValidator {
   return new CompositeFileValidator()
     .addValidator(new FileSizeValidator(50 * 1024 * 1024)) // 50MB
+    .addValidator(new FileTypeValidator(ALLOWED_FILE_TYPES))
     .addValidator(new FileNameValidator());
 }

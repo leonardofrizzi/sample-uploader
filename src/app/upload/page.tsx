@@ -66,12 +66,12 @@ export default function UploadPage() {
           </button>
         </div>
 
-        {files.map((file, index) => (
-          <article key={index} className="flex items-center gap-2 w-full max-w-[624px]">
+        {files.map(({ id, file }) => (
+          <article key={id} className="flex items-center gap-2 w-full max-w-[624px]">
             <Image src="/svg/check-circle.svg" alt="" width={20} height={20} />
             <span className="text-md-medium text-black">{file.name}</span>
             <button
-              onClick={() => handleRemoveFile(index)}
+              onClick={() => handleRemoveFile(id)}
               className="ml-1"
               aria-label={`Remove ${file.name}`}
             >

@@ -1,24 +1,31 @@
 import { useState, useRef, useCallback } from "react";
 import { createDefaultValidator } from "@/validators/fileValidators";
 
+export interface FileWithId {
+  id: string;
+  file: File;
+}
+
 interface UseFileUploadReturn {
-  files: File[];
+  files: FileWithId[];
   isUploading: boolean;
   error: string | null;
   fileInputRef: React.RefObject<HTMLInputElement | null>;
   handleBrowseClick: () => void;
   handleFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleRemoveFile: (index: number) => void;
+  handleRemoveFile: (id: string) => void;
   uploadFiles: () => Promise<boolean>;
 }
 
 const validator = createDefaultValidator();
 
 export function useFileUpload(): UseFileUploadReturn {
-  const [files, setFiles] = useState<File[]>([]);
+  const [files, setFiles] = useState<FileWithId[]>([]);
   const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const filesRef = useRef<FileWithId[]>(files);
+  filesRef.current = files;
 
   const handleBrowseClick = useCallback(() => {
     fileInputRef.current?.click();
@@ -27,31 +34,32 @@ export function useFileUpload(): UseFileUploadReturn {
   const handleFileChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFiles = e.target.files;
     if (selectedFiles) {
-      const newFiles: File[] = [];
+      const newFiles: FileWithId[] = [];
       for (const file of Array.from(selectedFiles)) {
         const result = validator.validate(file);
         if (!result.isValid) {
           setError(result.error || "Invalid file");
           return;
         }
-        newFiles.push(file);
+        newFiles.push({ id: crypto.randomUUID(), file });
       }
       setError(null);
       setFiles((prev) => [...prev, ...newFiles]);
     }
   }, []);
 
-  const handleRemoveFile = useCallback((index: number) => {
-    setFiles((prev) => prev.filter((_, i) => i !== index));
+  const handleRemoveFile = useCallback((id: string) => {
+    setFiles((prev) => prev.filter((f) => f.id !== id));
   }, []);
 
   const uploadFiles = useCallback(async (): Promise<boolean> => {
-    if (files.length === 0) return false;
+    const currentFiles = filesRef.current;
+    if (currentFiles.length === 0) return false;
 
     setIsUploading(true);
 
     const formData = new FormData();
-    files.forEach((file) => formData.append("files", file));
+    currentFiles.forEach(({ file }) => formData.append("files", file));
 
     try {
       const response = await fetch("/api/upload", {
@@ -73,7 +81,7 @@ export function useFileUpload(): UseFileUploadReturn {
       setIsUploading(false);
       return false;
     }
-  }, [files]);
+  }, []);
 
   return {
     files,
