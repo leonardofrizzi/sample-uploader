@@ -36,7 +36,7 @@ export default function SuccessPage() {
       </div>
       <div className="flex flex-col items-center gap-5 px-6 pt-6 pb-6">
         <Link href="/upload" className="w-full max-w-[624px]">
-          <button className="flex items-center justify-center w-full h-12 gap-2 bg-white text-gray-700 border border-gray-300 shadow-[0px_1px_2px_rgba(16,24,40,0.05)] py-3 px-5 rounded-lg text-md-semibold hover:bg-gray-50 transition-colors">
+          <button className="flex items-center justify-center w-full h-12 gap-2 bg-white text-gray-700 border border-gray-300 shadow-xs py-3 px-5 rounded-lg text-md-semibold hover:bg-gray-50 transition-colors">
             <Image src="/svg/search-refraction.svg" alt="" width={20} height={20} />
             <span>Share more files</span>
             <Image src="/svg/arrow-right.svg" alt="" width={20} height={20} />

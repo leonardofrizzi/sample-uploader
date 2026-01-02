@@ -28,7 +28,7 @@ export const Header = memo(function Header() {
       </span>
       <button
         onClick={handleLogout}
-        className="flex items-center justify-center px-3 py-2 md:w-[139px] md:h-[44px] md:px-[18px] md:py-[10px] gap-2 bg-primary border border-primary rounded-lg shadow-[0px_1px_2px_rgba(16,24,40,0.05)] hover:opacity-90 transition-opacity"
+        className="flex items-center justify-center px-3 py-2 md:w-[139px] md:h-[44px] md:px-[18px] md:py-[10px] gap-2 bg-primary border border-primary rounded-lg shadow-xs hover:opacity-90 transition-opacity"
       >
         <span className="text-md-semibold text-white">Exit Case</span>
       </button>

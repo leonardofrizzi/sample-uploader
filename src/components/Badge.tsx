@@ -14,7 +14,7 @@ export const Badge = memo(function Badge({ children, variant = "default" }: Badg
 
   return (
     <span
-      className={`inline-flex items-center px-[10px] py-[6px] border rounded-lg shadow-[0px_1px_2px_rgba(16,24,40,0.05)] text-sm-semibold ${variants[variant]}`}
+      className={`inline-flex items-center px-[10px] py-[6px] border rounded-lg shadow-xs text-sm-semibold ${variants[variant]}`}
     >
       {children}
     </span>

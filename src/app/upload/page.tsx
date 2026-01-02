@@ -54,7 +54,7 @@ export default function UploadPage() {
           </div>
           <button
             onClick={handleBrowseClick}
-            className="px-[10px] py-[6px] bg-blue-50 border border-blue-50 rounded-lg shadow-[0px_1px_2px_rgba(16,24,40,0.05)] text-sm-semibold text-blue-600"
+            className="px-[10px] py-[6px] bg-blue-50 border border-blue-50 rounded-lg shadow-xs text-sm-semibold text-blue-600"
           >
             Browse
           </button>

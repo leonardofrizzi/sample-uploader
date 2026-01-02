@@ -54,7 +54,7 @@ export default function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="demo@hearsay.com"
-              className="w-full h-11 px-[14px] py-[10px] bg-white border border-gray-300 rounded-lg shadow-[0px_1px_2px_rgba(16,24,40,0.05)] text-md-regular text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+              className="w-full h-11 px-[14px] py-[10px] bg-white border border-gray-300 rounded-lg shadow-xs text-md-regular text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
             />
           </div>
           <div className="flex flex-col gap-[6px]">
@@ -67,7 +67,7 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
-              className="w-full h-11 px-[14px] py-[10px] bg-white border border-gray-300 rounded-lg shadow-[0px_1px_2px_rgba(16,24,40,0.05)] text-md-regular text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+              className="w-full h-11 px-[14px] py-[10px] bg-white border border-gray-300 rounded-lg shadow-xs text-md-regular text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
             />
           </div>
           {error && (
@@ -78,7 +78,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full h-12 bg-primary text-white border border-primary rounded-lg shadow-[0px_1px_2px_rgba(16,24,40,0.05)] text-md-semibold hover:opacity-90 transition-opacity disabled:opacity-50"
+            className="w-full h-12 bg-primary text-white border border-primary rounded-lg shadow-xs text-md-semibold hover:opacity-90 transition-opacity disabled:opacity-50"
           >
             {isLoading ? "Signing in..." : "Sign In"}
           </button>
