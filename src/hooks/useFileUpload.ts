@@ -60,12 +60,16 @@ export function useFileUpload(): UseFileUploadReturn {
       });
 
       if (!response.ok) {
+        const data = await response.json().catch(() => ({}));
+        setError(data.error || "Failed to upload files");
         setIsUploading(false);
         return false;
       }
 
+      setError(null);
       return true;
     } catch {
+      setError("Network error. Please try again.");
       setIsUploading(false);
       return false;
     }

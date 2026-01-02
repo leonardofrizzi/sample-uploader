@@ -12,6 +12,7 @@ export default function UploadPage() {
   const {
     files,
     isUploading,
+    error,
     fileInputRef,
     handleBrowseClick,
     handleFileChange,
@@ -38,6 +39,11 @@ export default function UploadPage() {
         </p>
       </header>
       <section className="flex flex-col items-center gap-3 px-6 mt-6 pb-6">
+        {error && (
+          <p className="text-sm-regular text-red-500 text-center w-full max-w-[624px]">
+            {error}
+          </p>
+        )}
         <input
           ref={fileInputRef}
           type="file"
