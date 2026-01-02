@@ -1,8 +1,10 @@
 import { useState, useRef, useCallback } from "react";
+import { createDefaultValidator } from "@/validators/fileValidators";
 
 interface UseFileUploadReturn {
   files: File[];
   isUploading: boolean;
+  error: string | null;
   fileInputRef: React.RefObject<HTMLInputElement | null>;
   handleBrowseClick: () => void;
   handleFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -10,9 +12,12 @@ interface UseFileUploadReturn {
   uploadFiles: () => Promise<boolean>;
 }
 
+const validator = createDefaultValidator();
+
 export function useFileUpload(): UseFileUploadReturn {
   const [files, setFiles] = useState<File[]>([]);
   const [isUploading, setIsUploading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleBrowseClick = useCallback(() => {
@@ -22,7 +27,17 @@ export function useFileUpload(): UseFileUploadReturn {
   const handleFileChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFiles = e.target.files;
     if (selectedFiles) {
-      setFiles((prev) => [...prev, ...Array.from(selectedFiles)]);
+      const newFiles: File[] = [];
+      for (const file of Array.from(selectedFiles)) {
+        const result = validator.validate(file);
+        if (!result.isValid) {
+          setError(result.error || "Invalid file");
+          return;
+        }
+        newFiles.push(file);
+      }
+      setError(null);
+      setFiles((prev) => [...prev, ...newFiles]);
     }
   }, []);
 
@@ -59,6 +74,7 @@ export function useFileUpload(): UseFileUploadReturn {
   return {
     files,
     isUploading,
+    error,
     fileInputRef,
     handleBrowseClick,
     handleFileChange,
