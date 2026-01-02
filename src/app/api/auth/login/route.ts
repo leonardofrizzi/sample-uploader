@@ -20,7 +20,14 @@ export async function POST(request: NextRequest) {
     }
 
     if (email === MOCK_USER.email && password === MOCK_PASSWORD) {
-      return NextResponse.json(MOCK_USER);
+      const response = NextResponse.json(MOCK_USER);
+      response.cookies.set("auth", "true", {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        maxAge: 60 * 60 * 24,
+      });
+      return response;
     }
 
     return NextResponse.json(
