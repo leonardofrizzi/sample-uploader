@@ -1,10 +1,6 @@
 import { useState, useRef, useCallback } from "react";
 import { createDefaultValidator } from "@/validators/fileValidators";
-
-export interface FileWithId {
-  id: string;
-  file: File;
-}
+import { FileWithId } from "@/types";
 
 interface UseFileUploadReturn {
   files: FileWithId[];

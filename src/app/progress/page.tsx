@@ -15,7 +15,7 @@ export default function ProgressPage() {
 
   return (
     <PageLayout>
-      <div className="px-6 pt-6">
+      <header className="px-6 pt-6">
         <Badge variant="progress">Uploading In Progress</Badge>
         <h1 className="mt-4 text-lg-semibold text-gray-900">
           Facebook Extraction Assistant
@@ -23,8 +23,8 @@ export default function ProgressPage() {
         <p className="text-sm-regular text-gray-600">
           Facebook extraction in progress
         </p>
-      </div>
-      <div className="flex flex-col items-center gap-4 px-6 mt-6">
+      </header>
+      <section className="flex flex-col items-center gap-4 px-6 mt-6">
         <Image
           src="/images/uploading-cloud.webp"
           alt="Uploading"
@@ -32,11 +32,11 @@ export default function ProgressPage() {
           height={160}
         />
 
-        <span className="text-lg-semibold text-gray-900">
+        <p className="text-lg-semibold text-gray-900">
           {formatTime(seconds)}
-        </span>
+        </p>
 
-        <div className="relative w-[320px] h-2">
+        <div className="relative w-[320px] h-2" role="progressbar" aria-valuenow={progress} aria-valuemin={0} aria-valuemax={100}>
           <div className="absolute inset-0 bg-gray-200 rounded" />
           <div
             className="absolute h-2 bg-primary rounded"
@@ -52,14 +52,14 @@ export default function ProgressPage() {
             height={24}
             className="animate-spin"
           />
-          <span className="text-xs-medium text-black">Uploading</span>
+          <p className="text-xs-medium text-black">Uploading</p>
         </div>
-      </div>
-      <div className="flex justify-center px-6 pt-6 pb-6">
-        <span className="text-sm-bold text-primary-700">
+      </section>
+      <footer className="flex justify-center px-6 pt-6 pb-6">
+        <p className="text-sm-bold text-primary-700">
           Do Not Close App While Processing
-        </span>
-      </div>
+        </p>
+      </footer>
     </PageLayout>
   );
 }

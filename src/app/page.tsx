@@ -7,7 +7,7 @@ import { ActionButton } from "@/components/ActionButton";
 export default function Home() {
   return (
     <PageLayout>
-      <div className="px-6 pt-6">
+      <header className="px-6 pt-6">
         <Badge>Starting Extraction</Badge>
         <h1 className="mt-4 text-lg-semibold text-gray-900">
           Hearsay Extraction Assistant
@@ -15,8 +15,8 @@ export default function Home() {
         <p className="text-sm-regular text-gray-600">
           Follow the instructions below to prepare for an extraction.
         </p>
-      </div>
-      <div className="flex flex-wrap justify-center gap-8 px-16 mt-6">
+      </header>
+      <section className="flex flex-wrap justify-center gap-8 px-16 mt-6">
         <DeviceCard
           image="/images/iphone.webp"
           title="iPhone"
@@ -27,8 +27,8 @@ export default function Home() {
           title="Android"
           description="OS version 11.1+"
         />
-      </div>
-      <div className="flex flex-col items-center gap-5 px-16 pt-8 pb-6">
+      </section>
+      <nav className="flex flex-col items-center gap-5 px-16 pt-8 pb-6">
         <Link href="/source" className="w-full max-w-[544px]">
           <ActionButton icon="arrow-right">
             Extract from a Non-Phone Source
@@ -39,7 +39,7 @@ export default function Home() {
             Or, Upload Files
           </ActionButton>
         </Link>
-      </div>
+      </nav>
     </PageLayout>
   );
 }

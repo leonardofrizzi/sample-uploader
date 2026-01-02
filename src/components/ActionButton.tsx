@@ -7,6 +7,8 @@ interface ActionButtonProps {
   icon?: "arrow-right" | "upload-cloud";
   iconPosition?: "left" | "right" | "top";
   onClick?: () => void;
+  disabled?: boolean;
+  type?: "button" | "submit";
 }
 
 export const ActionButton = memo(function ActionButton({
@@ -15,8 +17,10 @@ export const ActionButton = memo(function ActionButton({
   icon,
   iconPosition = "right",
   onClick,
+  disabled = false,
+  type = "button",
 }: ActionButtonProps) {
-  const baseStyles = "flex items-center justify-center transition-colors";
+  const baseStyles = "flex items-center justify-center transition-colors disabled:opacity-50 disabled:cursor-not-allowed";
 
   const variants = {
     primary: "w-full max-w-[544px] h-12 gap-2 bg-white text-gray-700 border border-gray-300 shadow-xs py-3 px-5 rounded-lg text-md-semibold hover:bg-gray-50",
@@ -29,7 +33,9 @@ export const ActionButton = memo(function ActionButton({
 
   return (
     <button
+      type={type}
       onClick={onClick}
+      disabled={disabled}
       className={`${baseStyles} ${variants[variant]}`}
     >
       {icon && (iconPosition === "left" || (isUpload && iconPosition === "top")) && (

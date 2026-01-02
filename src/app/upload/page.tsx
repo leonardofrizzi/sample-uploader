@@ -80,15 +80,13 @@ export default function UploadPage() {
           </article>
         ))}
 
-        <button
+        <ActionButton
+          variant="submit"
           onClick={handleUpload}
           disabled={files.length === 0 || isUploading}
-          className="w-full max-w-[624px]"
         >
-          <ActionButton variant="submit">
-            {isUploading ? "Uploading..." : "Upload Now"}
-          </ActionButton>
-        </button>
+          {isUploading ? "Uploading..." : "Upload Now"}
+        </ActionButton>
       </section>
     </PageLayout>
   );

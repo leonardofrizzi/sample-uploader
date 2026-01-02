@@ -73,11 +73,49 @@ export class CompositeFileValidator implements FileValidator {
   }
 }
 
-const ALLOWED_FILE_TYPES = ["pdf", "doc", "docx", "txt", "jpg", "jpeg", "png", "gif", "zip"];
+type ValidatorPreset = "default" | "images" | "documents" | "strict";
+
+interface ValidatorConfig {
+  maxSizeInBytes: number;
+  allowedTypes: string[];
+}
+
+const VALIDATOR_PRESETS: Record<ValidatorPreset, ValidatorConfig> = {
+  default: {
+    maxSizeInBytes: 50 * 1024 * 1024, // 50MB
+    allowedTypes: ["pdf", "doc", "docx", "txt", "jpg", "jpeg", "png", "gif", "zip"],
+  },
+  images: {
+    maxSizeInBytes: 10 * 1024 * 1024, // 10MB
+    allowedTypes: ["jpg", "jpeg", "png", "gif", "webp", "svg"],
+  },
+  documents: {
+    maxSizeInBytes: 25 * 1024 * 1024, // 25MB
+    allowedTypes: ["pdf", "doc", "docx", "txt", "xls", "xlsx"],
+  },
+  strict: {
+    maxSizeInBytes: 5 * 1024 * 1024, // 5MB
+    allowedTypes: ["pdf", "txt"],
+  },
+};
+
+export class ValidatorFactory {
+  static create(preset: ValidatorPreset = "default"): CompositeFileValidator {
+    const config = VALIDATOR_PRESETS[preset];
+    return new CompositeFileValidator()
+      .addValidator(new FileSizeValidator(config.maxSizeInBytes))
+      .addValidator(new FileTypeValidator(config.allowedTypes))
+      .addValidator(new FileNameValidator());
+  }
+
+  static createCustom(config: ValidatorConfig): CompositeFileValidator {
+    return new CompositeFileValidator()
+      .addValidator(new FileSizeValidator(config.maxSizeInBytes))
+      .addValidator(new FileTypeValidator(config.allowedTypes))
+      .addValidator(new FileNameValidator());
+  }
+}
 
 export function createDefaultValidator(): CompositeFileValidator {
-  return new CompositeFileValidator()
-    .addValidator(new FileSizeValidator(50 * 1024 * 1024)) // 50MB
-    .addValidator(new FileTypeValidator(ALLOWED_FILE_TYPES))
-    .addValidator(new FileNameValidator());
+  return ValidatorFactory.create("default");
 }

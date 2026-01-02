@@ -59,10 +59,11 @@ export default function FilesPage() {
             </article>
           ))
         )}
-        <Link href="/upload" className="w-full max-w-[624px] mt-2">
-          <button className="flex items-center justify-center w-full h-12 gap-2 bg-primary text-white border border-primary rounded-lg shadow-xs text-md-semibold hover:opacity-90 transition-opacity">
-            Upload More Files
-          </button>
+        <Link
+          href="/upload"
+          className="flex items-center justify-center w-full max-w-[624px] mt-2 h-12 gap-2 bg-primary text-white border border-primary rounded-lg shadow-xs text-md-semibold hover:opacity-90 transition-opacity"
+        >
+          Upload More Files
         </Link>
       </section>
     </PageLayout>
