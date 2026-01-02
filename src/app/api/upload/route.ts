@@ -1,9 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { StoredFile } from "@/types";
+import { isAuthenticated, unauthorizedResponse } from "@/utils/auth";
 
 const uploadedFiles: StoredFile[] = [];
 
 export async function POST(request: NextRequest) {
+  if (!isAuthenticated(request)) {
+    return unauthorizedResponse();
+  }
+
   try {
     const formData = await request.formData();
     const files = formData.getAll("files") as File[];
@@ -42,11 +47,19 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  if (!isAuthenticated(request)) {
+    return unauthorizedResponse();
+  }
+
   return NextResponse.json({ files: uploadedFiles });
 }
 
 export async function DELETE(request: NextRequest) {
+  if (!isAuthenticated(request)) {
+    return unauthorizedResponse();
+  }
+
   const { searchParams } = new URL(request.url);
   const id = searchParams.get("id");
 
