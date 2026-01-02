@@ -1,41 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { PageLayout } from "@/components/PageLayout";
 import { Badge } from "@/components/Badge";
-import { StoredFile } from "@/types";
+import { useFetchFiles } from "@/hooks/useFetchFiles";
 import { formatFileSize } from "@/utils/formatters";
 
 export default function FilesPage() {
-  const [files, setFiles] = useState<StoredFile[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchFiles() {
-      try {
-        const response = await fetch("/api/upload");
-        const data = await response.json();
-        setFiles(data.files || []);
-      } catch (error) {
-        console.error("Failed to fetch files:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    fetchFiles();
-  }, []);
-
-  const handleDelete = async (id: string) => {
-    try {
-      await fetch(`/api/upload?id=${id}`, { method: "DELETE" });
-      setFiles((prev) => prev.filter((f) => f.id !== id));
-    } catch (error) {
-      console.error("Failed to delete file:", error);
-    }
-  };
+  const { files, isLoading, error, deleteFile } = useFetchFiles();
 
   return (
     <PageLayout>
@@ -49,6 +22,11 @@ export default function FilesPage() {
         </p>
       </header>
       <section className="flex flex-col gap-3 px-6 mt-6 pb-6">
+        {error && (
+          <p className="text-sm-regular text-red-500 text-center py-4">
+            {error}
+          </p>
+        )}
         {isLoading ? (
           <p className="text-sm-regular text-gray-500 text-center py-4">
             Loading files...
@@ -73,7 +51,7 @@ export default function FilesPage() {
                 </div>
               </div>
               <button
-                onClick={() => handleDelete(file.id)}
+                onClick={() => deleteFile(file.id)}
                 aria-label={`Delete ${file.name}`}
               >
                 <Image src="/svg/x.svg" alt="" width={20} height={20} />
@@ -82,7 +60,7 @@ export default function FilesPage() {
           ))
         )}
         <Link href="/upload" className="w-full max-w-[624px] mt-2">
-          <button className="flex items-center justify-center w-full h-12 gap-2 bg-primary text-white border border-primary rounded-lg shadow-[0px_1px_2px_rgba(16,24,40,0.05)] text-md-semibold hover:opacity-90 transition-opacity">
+          <button className="flex items-center justify-center w-full h-12 gap-2 bg-primary text-white border border-primary rounded-lg shadow-xs text-md-semibold hover:opacity-90 transition-opacity">
             Upload More Files
           </button>
         </Link>
