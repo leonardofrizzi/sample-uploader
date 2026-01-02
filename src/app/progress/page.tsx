@@ -1,37 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { PageLayout } from "@/components/PageLayout";
 import { Badge } from "@/components/Badge";
+import { useProgress } from "@/hooks/useProgress";
+import { formatTime } from "@/utils/formatters";
 
 export default function ProgressPage() {
   const router = useRouter();
-  const [progress, setProgress] = useState(0);
-  const [seconds, setSeconds] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSeconds((prev) => prev + 1);
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          router.push("/success");
-          return 100;
-        }
-        return prev + 2;
-      });
-    }, 100);
-
-    return () => clearInterval(interval);
-  }, [router]);
-
-  const formatTime = (totalSeconds: number) => {
-    const mins = Math.floor(totalSeconds / 60);
-    const secs = totalSeconds % 60;
-    return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
-  };
+  const { progress, seconds } = useProgress({
+    onComplete: () => router.push("/success"),
+  });
 
   return (
     <PageLayout>
