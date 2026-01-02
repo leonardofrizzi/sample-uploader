@@ -47,7 +47,7 @@ export default function SuccessPage() {
                 <Image src="/svg/arrow-right.svg" alt="" width={20} height={20} />
               </button>
             </Link>
-            <Link href="/" className="text-md-semibold text-gray-600 hover:opacity-90 transition-opacity">
+            <Link href="/files" className="text-md-semibold text-gray-600 hover:opacity-90 transition-opacity">
               Go to Dashboard
             </Link>
           </div>

@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Card } from "@/components/Card";
@@ -10,7 +10,9 @@ import { Badge } from "@/components/Badge";
 import { ActionButton } from "@/components/ActionButton";
 
 export default function UploadPage() {
+  const router = useRouter();
   const [files, setFiles] = useState<File[]>([]);
+  const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleBrowseClick = () => {
@@ -28,12 +30,32 @@ export default function UploadPage() {
     setFiles((prev) => prev.filter((_, i) => i !== index));
   };
 
+  const handleUpload = async () => {
+    if (files.length === 0) return;
+
+    setIsUploading(true);
+
+    const formData = new FormData();
+    files.forEach((file) => formData.append("files", file));
+
+    try {
+      await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+      router.push("/progress");
+    } catch (error) {
+      console.error("Upload failed:", error);
+      setIsUploading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-1 flex items-center justify-center px-4">
         <Card>
-          <div className="px-6 pt-6">
+          <header className="px-6 pt-6">
             <Badge>Starting Extraction</Badge>
             <h1 className="mt-4 text-lg-semibold text-gray-900">
               File Upload
@@ -41,8 +63,8 @@ export default function UploadPage() {
             <p className="text-sm-regular text-gray-600">
               Select files to upload for review
             </p>
-          </div>
-          <div className="flex flex-col items-center gap-3 px-6 mt-6 pb-6">
+          </header>
+          <section className="flex flex-col items-center gap-3 px-6 mt-6 pb-6">
             <input
               ref={fileInputRef}
               type="file"
@@ -66,21 +88,29 @@ export default function UploadPage() {
             </div>
 
             {files.map((file, index) => (
-              <div key={index} className="flex items-center gap-2 w-full max-w-[624px]">
+              <article key={index} className="flex items-center gap-2 w-full max-w-[624px]">
                 <Image src="/svg/check-circle.svg" alt="" width={20} height={20} />
                 <span className="text-md-medium text-black">{file.name}</span>
-                <button onClick={() => handleRemoveFile(index)} className="ml-1">
-                  <Image src="/svg/x.svg" alt="Remove" width={20} height={20} />
+                <button
+                  onClick={() => handleRemoveFile(index)}
+                  className="ml-1"
+                  aria-label={`Remove ${file.name}`}
+                >
+                  <Image src="/svg/x.svg" alt="" width={20} height={20} />
                 </button>
-              </div>
+              </article>
             ))}
 
-            <Link href="/progress" className="w-full max-w-[624px]">
+            <button
+              onClick={handleUpload}
+              disabled={files.length === 0 || isUploading}
+              className="w-full max-w-[624px]"
+            >
               <ActionButton variant="submit">
-                Upload Now
+                {isUploading ? "Uploading..." : "Upload Now"}
               </ActionButton>
-            </Link>
-          </div>
+            </button>
+          </section>
         </Card>
       </main>
       <Footer />
