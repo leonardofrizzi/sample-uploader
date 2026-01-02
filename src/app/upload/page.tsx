@@ -1,6 +1,5 @@
 "use client";
 
-import { useRef, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Header } from "@/components/Header";
@@ -8,45 +7,24 @@ import { Footer } from "@/components/Footer";
 import { Card } from "@/components/Card";
 import { Badge } from "@/components/Badge";
 import { ActionButton } from "@/components/ActionButton";
+import { useFileUpload } from "@/hooks/useFileUpload";
 
 export default function UploadPage() {
   const router = useRouter();
-  const [files, setFiles] = useState<File[]>([]);
-  const [isUploading, setIsUploading] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const handleBrowseClick = () => {
-    fileInputRef.current?.click();
-  };
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFiles = e.target.files;
-    if (selectedFiles) {
-      setFiles((prev) => [...prev, ...Array.from(selectedFiles)]);
-    }
-  };
-
-  const handleRemoveFile = (index: number) => {
-    setFiles((prev) => prev.filter((_, i) => i !== index));
-  };
+  const {
+    files,
+    isUploading,
+    fileInputRef,
+    handleBrowseClick,
+    handleFileChange,
+    handleRemoveFile,
+    uploadFiles,
+  } = useFileUpload();
 
   const handleUpload = async () => {
-    if (files.length === 0) return;
-
-    setIsUploading(true);
-
-    const formData = new FormData();
-    files.forEach((file) => formData.append("files", file));
-
-    try {
-      await fetch("/api/upload", {
-        method: "POST",
-        body: formData,
-      });
+    const success = await uploadFiles();
+    if (success) {
       router.push("/progress");
-    } catch (error) {
-      console.error("Upload failed:", error);
-      setIsUploading(false);
     }
   };
 
